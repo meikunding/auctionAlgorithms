@@ -3,7 +3,6 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        build(propagate: true, job: 'test')
         echo 'Building Project...'
       }
     }
