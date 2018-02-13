@@ -3,12 +3,16 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        echo 'Building Project...'
+        dir(path: '/tmp') {
+          git(url: 'https://github.com/nickfoss32/auctionAlgorithms.git', branch: 'master')
+          sh 'mkdir auctionAlgorithms/build; cd $_; cmake ..; make'
+        }
+        
       }
     }
     stage('Test') {
       steps {
-        echo 'Running Tests...'
+        sh './TestAuction'
       }
     }
     stage('Deploy') {
