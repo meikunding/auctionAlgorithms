@@ -3,9 +3,9 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        dir(path: '/tmp') {
-          git(url: 'https://github.com/nickfoss32/auctionAlgorithms.git', branch: 'master')
-          sh 'mkdir auctionAlgorithms/build; cd $_; cmake ..; make'
+        catchError() {
+          git(url: 'https://github.com/nickfoss32/auctionAlgorithms.git', branch: 'master', changelog: true)
+          sh 'cd auctionAlgorithms; mkdir build; cd build; cmake ..; make'
         }
         
       }
@@ -18,6 +18,16 @@ pipeline {
     stage('Deploy') {
       steps {
         echo 'Deploying to target...'
+      }
+    }
+    stage('Documentation') {
+      steps {
+        echo 'Generating Documentation'
+      }
+    }
+    stage('Cleanup') {
+      steps {
+        echo 'Performing Cleanup'
       }
     }
   }
