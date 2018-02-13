@@ -3,16 +3,12 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        catchError() {
-          git(url: 'https://github.com/nickfoss32/auctionAlgorithms.git', branch: 'master', changelog: true)
-          sh 'cd auctionAlgorithms; mkdir build; cd build; cmake ..; make'
-        }
-        
+        git(url: 'https://github.com/nickfoss32/auctionAlgorithms.git', branch: 'master')
       }
     }
     stage('Test') {
       steps {
-        sh './TestAuction'
+        echo 'Running Tests'
       }
     }
     stage('Deploy') {
