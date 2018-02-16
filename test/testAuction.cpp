@@ -1,14 +1,15 @@
 #include <iostream>
-#include "auction.h"
+#include "Auction.h"
+#include "gtest/gtest.h"
 
 
 int main (int argc, char* argv[])
 {
 	std::cout << "Testing auction..." << std::endl;
 
-	Auction auctionUtility;
-	AuctionData myData;
-	auctionUtility.runAlgorithm(myData);
+	::testing::InitGoogleTest(&argc, argv);
 
-	return 0;
+
+
+	return RUN_ALL_TESTS();
 }
