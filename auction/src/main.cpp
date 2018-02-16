@@ -1,11 +1,16 @@
 #include <iostream>
-#include "auction.h"
+#include "Auction.h"
 
 
 int main (int argc, char* argv[])
 {
+	//declare the auction utility
 	Auction auctionUtility;
-	AuctionData myData;
+
+	//fetch instance of auction data & populate it
+	AuctionData& myData = AuctionData::Instance();
+
+	//run the auction algorithm
 	auctionUtility.runAlgorithm(myData);
 
 	return 0;
